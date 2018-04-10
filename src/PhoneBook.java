@@ -55,13 +55,18 @@ public class PhoneBook {
 
     public String FindContact(String number) {
         checkNumber(number);
-        String resault = "";
+        PhoneBook element = new PhoneBook();
         System.out.println(phonebook.entrySet());
-        Set<HashMap.Entry<String, Set<String>>> entrySet = phonebook.entrySet();
-        if (entrySet.contains(number)) {
-
+        Set<Map.Entry<String, Set<String>>> entrySet = phonebook.entrySet();
+        for (Map.Entry<String, Set<String>> pair : entrySet) {
+            if (element.equals(pair.getValue())) {
+               return pair.getKey();
+            }
+            if (element.equals(pair.getValue())) {
+                return pair.getKey();
+            }
         }
-        return "";
+        return null;
     }
 }
 
