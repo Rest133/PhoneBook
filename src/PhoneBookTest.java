@@ -1,4 +1,3 @@
-import kotlin.collections.EmptySet;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -38,32 +37,30 @@ class PhoneBookTest {
     @Test
     void findNumbers() {
         equalsSet.add("+79064656456");
-        assertArrayEquals(equalsSet.toArray(), book.FindNumbers("Виктор Ремчиков").toArray());
+        assertEquals(equalsSet, book.findNumbers("Виктор Ремчиков"));
 
     }
 
     @Test
     void findContact() {
-        assertEquals("Виктор Ремчиков", book.FindContact("+79064656456"));
+        assertEquals("Виктор Ремчиков", book.findContact("+79064656456"));
     }
 
 
     @Test
     void addPhone() {
-        assertEquals(null, book.FindNumbers("Мария Сихорина"));
+        assertEquals(null, book.findNumbers("Мария Сихорина"));
         book.addPhone("Мария Сихорина", "+7902300456");
-        equalsSet.add("+7902300456");
-        assertArrayEquals(book.FindNumbers("Мария Сихорина").toArray(), equalsSet.toArray());
+        assertEquals(book.findContact("+7902300456"), "Мария Сихорина");
     }
 
     @Test
     void deletePhone() {
         equalsSet.add("+79062684456");
         equalsSet.add("+79062984456");
-        assertArrayEquals(book.FindNumbers("Владислав Сихорин").toArray(), equalsSet.toArray());
+        assertEquals(book.findNumbers("Владислав Сихорин"), equalsSet);
         book.deletePhone("Владислав Сихорин", "+79062984456");
         equalsSet.remove("+79062984456");
-        assertArrayEquals(book.FindNumbers("Владислав Сихорин").toArray(), equalsSet.toArray());
+        assertEquals(book.findNumbers("Владислав Сихорин"), equalsSet);
     }
 
-}
