@@ -45,7 +45,7 @@ public class PhoneBook {
         numberSet.remove(number);
     }
 
-    public Set<String> FindNumbers(String contact) {
+    public Set<String> findNumbers(String contact) {
         if (!phonebook.get(contact).isEmpty()) {
             return phonebook.get(contact);
         } else {
@@ -53,20 +53,13 @@ public class PhoneBook {
         }
     }
 
-    public String FindContact(String number) {
+    public String findContact(String number) {
         checkNumber(number);
-        PhoneBook element = new PhoneBook();
-        System.out.println(phonebook.entrySet());
-        Set<Map.Entry<String, Set<String>>> entrySet = phonebook.entrySet();
-        for (Map.Entry<String, Set<String>> pair : entrySet) {
-            if (element.equals(pair.getValue())) {
-               return pair.getKey();
-            }
-            if (element.equals(pair.getValue())) {
+        for (Map.Entry<String, Set<String>> pair : phonebook.entrySet()) {
+            if (pair.getValue().contains(number)) {
                 return pair.getKey();
             }
         }
         return null;
     }
 }
-
